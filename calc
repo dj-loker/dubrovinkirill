@@ -38,44 +38,53 @@ public class Main {
             if (k) {
                 //КОНВЕРТИРУЕМ РИМСКИЕ ЧИСЛА В АРАБСКИЕ
                 int  a = romanToArab(words[0]);
-                if ((a < 0) ){
-                    System.out.println("Первое число имеет некорректное значение");
-                }
                 int  b = romanToArab(words[1]);
-                if ((b< 0) ){
-                    System.out.println("Второе число имеет некорректное значение");
-                }
-                char operation = num.charAt(words[0].length());
-                int sum = 0;
-                switch (operation){
-                    case '+': sum = a + b; break;
-                    case '-': sum = a - b; break;
-                    case '*': sum = a * b; break;
-                    case '/': sum = a / b; break;
-                }
-                //ПРОВЕРЯЕМ КОРРЕКТНОСТЬ ПОЛУЧЕННОГО РЕЗУЛЬТАТА
-                if ((sum > 10 || sum< 0) ){
-                    System.out.println("Результат имеет недопустимое значение");
-                }
-                //КОНВЕРТИРУЕМ РЕЗУЛЬТАТ ОБРАТНО В РИМСКИЕ
-                else{
-                    int i;
-                    for (i = 0; i < 10; i++) {
-                        if (arab[i] == sum) {
-                            System.out.println("Результат:" + roman[i]);
-
-                        }
+                //ПРОВЕРКА КОРРЕКТНОСТИ ВВОДИМЫХ СИМВОЛОВ ИСХОДЯ ИЗ УСЛОВИЯ ЗАДАЧИ
+                if ((a < 0) || (b< 0) ){
+                    System.out.println("Введено некорректное значение");
+                } else {
+                    //ВЫПОЛНЯЕМ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ
+                    char operation = num.charAt(words[0].length());
+                    int sum = 0;
+                    switch (operation) {
+                        case '+':
+                            sum = a + b;
+                            break;
+                        case '-':
+                            sum = a - b;
+                            break;
+                        case '*':
+                            sum = a * b;
+                            break;
+                        case '/':
+                            sum = a / b;
+                            break;
                     }
+                    //ПРОВЕРЯЕМ КОРРЕКТНОСТЬ ПОЛУЧЕННОГО РЕЗУЛЬТАТА
+                    if ((sum > 10 || sum< 0) ){
+                        System.out.println("Результат имеет недопустимое значение");
+                    }
+                    //КОНВЕРТИРУЕМ РЕЗУЛЬТАТ ОБРАТНО В РИМСКИЕ
+                    else{
+                        int i;
+                        for (i = 0; i < 10; i++) {
+                            if (arab[i] == sum) {
+                                System.out.println("Результат:" + roman[i]);
 
+                            }
+                        }
+
+                    }
                 }
+            }
 
 
-            }else{
+            else{
                 //РАБОТАЕМ С АРАБСКИМИ ЧИСЛАМИ
                 int a = Integer.parseInt(words[0]);
                 char operation = num.charAt(words[0].length());
                 int b = Integer.parseInt(words[1]);
-
+                //ВЫПОЛНЯЕМ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ
                 int sum = 0;
                 switch (operation){
                     case '+': sum = a + b; break;
@@ -87,7 +96,7 @@ public class Main {
 
             }
         }
-
+        //ОБРАБОТКА ИСКЛЮЧЕНИЙ
         catch(Exception ex){
             //ex.printStackTrace();
             System.out.println("Введено некорректное значение");
