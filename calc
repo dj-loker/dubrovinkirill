@@ -16,9 +16,8 @@ public class Main {
         String num = in.nextLine();
 
         //МАССИВ АРАБСКИХ И РИМСКИХ ЧИСЕЛ
-        String[] roman = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-        int[] arab = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
+            String[] roman1 = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         //РАЗДЕЛЕНИЕ СТРОКИ НА ПОДСТРОКИ И РАБОТА С ЧИСЛАМИ
 
         try {
@@ -27,7 +26,7 @@ public class Main {
             //ОПРЕДЕЛЯЕМ ВИДЧИСЕЛ С КАКИМИ БУДЕМ РАБОТАТЬ
             Boolean k = false;
             for (int i = 0; i < 10; i++) {
-                if (words[0].equals(roman[i]))
+                if (words[0].equals(roman1[i]))
                     k = true;
             }
             //ЕСЛИ "K" - TRUE, ТО РАБОТАЕМ С РИМСКИМИ ЧИСЛАМИ, ИНАЧЕ С АРАБСКИМИ
@@ -49,60 +48,9 @@ public class Main {
                     }
                     //КОНВЕРТИРУЕМ РЕЗУЛЬТАТ ОБРАТНО В РИМСКИЕ
                     else{
+                        char res=convert(iu);
 
-
-                        String str = String.valueOf(iu);
-                        String x[]=str.split("");
-
-                        if (x.length==2){
-                            String result1;
-                            switch (x[0]){
-                                case "1": result1 = "X"; break;
-                                case "2": result1 = "XX"; break;
-                                case "3": result1 = "XXX"; break;
-                                case "4": result1 = "XL"; break;
-                                case "5": result1 = "L"; break;
-                                case "6": result1 = "LX"; break;
-                                case "7": result1 = "LXX"; break;
-                                case "8": result1= "LXXX"; break;
-                                case "9": result1 = "XC"; break;
-
-                                default:
-                                    throw new IllegalStateException("Unexpected value: " + x[0]);
-                            }
-                            String result = new String();
-                            switch (x[1]){
-                                case "1": result = result1+"I"; break;
-                                case "2": result = result1+"II"; break;
-                                case "3": result = result1+"III"; break;
-                                case "4": result = result1+"IV"; break;
-                                case "5": result = result1+"V"; break;
-                                case "6": result = result1+"VI"; break;
-                                case "7": result = result1+"VII"; break;
-                                case "8": result = result1+"VIII"; break;
-                                case "9": result = result1+"IX"; break;
-                                case "0": result = result1;break;
-                                default:
-                                    throw new IllegalStateException("Unexpected value: " + x[0]);
-                            }
-
-
-                            System.out.println("Результат:" +result);
-                            }
-                        else if(x.length == 3){
-                            System.out.println("Результат: C");
-                        }
-
-                        else if(x.length==1){
-                            int i;
-                            for (i = 0; i < 10; i++) {
-                                if (arab[i] == iu) {
-                                   System.out.println("Результат:" + roman[i]);
-
-                                }
-                            }
-
-                        }
+                        System.out.println(res);
 
                     }
                 }
@@ -130,9 +78,65 @@ public class Main {
     }
 
 
-    private static void convert (int iu){
+    private static char convert (int iu){
+        String[] roman = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+        int[] arab = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        String str = String.valueOf(iu);
+        String x[]=str.split("");
+
+        if (x.length==2){
+            String result1;
+            switch (x[0]){
+                case "1": result1 = "X"; break;
+                case "2": result1 = "XX"; break;
+                case "3": result1 = "XXX"; break;
+                case "4": result1 = "XL"; break;
+                case "5": result1 = "L"; break;
+                case "6": result1 = "LX"; break;
+                case "7": result1 = "LXX"; break;
+                case "8": result1= "LXXX"; break;
+                case "9": result1 = "XC"; break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + x[0]);
+            }
+            String result = new String();
+            switch (x[1]){
+                case "1": result = result1+"I"; break;
+                case "2": result = result1+"II"; break;
+                case "3": result = result1+"III"; break;
+                case "4": result = result1+"IV"; break;
+                case "5": result = result1+"V"; break;
+                case "6": result = result1+"VI"; break;
+                case "7": result = result1+"VII"; break;
+                case "8": result = result1+"VIII"; break;
+                case "9": result = result1+"IX"; break;
+                case "0": result = result1;break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + x[0]);
+            }
 
 
+            System.out.println("Результат:" +result);
+        }
+        else if(x.length == 3){
+            System.out.println("Результат: C");
+        }
+
+        else if(x.length==1){
+            int i;
+            for (i = 0; i < 10; i++) {
+                if (arab[i] == iu) {
+                    System.out.println("Результат:" + roman[i]);
+
+                }
+            }
+
+        }
+
+
+        return 0;
     }
     private static int oper (char operation, int a, int b) {
         int sum;
@@ -148,6 +152,8 @@ public class Main {
         return sum;
     }
     //КЛАСС ДЛЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
+
+
     private static int romanToArab(String roman) {
         if (roman.equals("I")) {
             return 1;
@@ -174,5 +180,5 @@ public class Main {
         }
 
     }
-    
+
 }
