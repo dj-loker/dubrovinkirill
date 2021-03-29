@@ -23,17 +23,20 @@ public class Main {
         int[] arab = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 
-        //РАЗДЕЛЕНИЕ СТРОКИ НА ПОДСТРОКИ
+        //РАЗДЕЛЕНИЕ СТРОКИ НА ПОДСТРОКИ И РАБОТА С ЧИСЛАМИ
 
         try {
             String[] words = num.split("[+-/*]");
 
+            //ОПРЕДЕЛЯЕМ ВИДЧИСЕЛ С КАКИМИ БУДЕМ РАБОТАТЬ
             Boolean k = false;
             for (int i = 0; i < 10; i++) {
                 if (words[0].equals(roman[i]))
                     k = true;
             }
+            //ЕСЛИ "K" - TRUE, ТО РАБОТАЕМ С РИМСКИМИ ЧИСЛАМИ, ИНАЧЕ С АРАБСКИМИ
             if (k) {
+                //КОНВЕРТИРУЕМ РИМСКИЕ ЧИСЛА В АРАБСКИЕ
                 int  a = romanToArab(words[0]);
                 int  b = romanToArab(words[1]);
                 char operation = num.charAt(words[0].length());
@@ -44,23 +47,25 @@ public class Main {
                     case '*': sum = a * b; break;
                     case '/': sum = a / b; break;
                 }
+                //ПРОВЕРЯЕМ КОРРЕКТНОСТЬ ПОЛУЧЕННОГО РЕЗУЛЬТАТА
                 if ((sum > 10 || sum< 0) ){
                     System.out.println("Результат имеет недопустимое значение");
                 }
+                //КОНВЕРТИРУЕМ РЕЗУЛЬТАТ ОБРАТНО В РИМСКИЕ
                 else{
-                int i;
-                for (i = 0; i < 10; i++) {
-                    if (arab[i] == sum) {
-                        System.out.println("Результат:" + roman[i]);
+                    int i;
+                    for (i = 0; i < 10; i++) {
+                        if (arab[i] == sum) {
+                            System.out.println("Результат:" + roman[i]);
 
+                        }
                     }
-                }
 
                 }
 
 
             }else{
-
+                //РАБОТАЕМ С АРАБСКИМИ ЧИСЛАМИ
                 int a = Integer.parseInt(words[0]);
                 char operation = num.charAt(words[0].length());
                 int b = Integer.parseInt(words[1]);
@@ -79,10 +84,10 @@ public class Main {
 
         catch(Exception ex){
             //ex.printStackTrace();
-            System.out.println("Введено некорректное значение или полученное значение имеет некоректнный вид");
+            System.out.println("Введено некорректное значение");
         }
     }
-
+        //КЛАСС ДЛЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
     private static int romanToArab(String roman) {
         if (roman.equals("I")) {
             return 1;
@@ -111,4 +116,3 @@ public class Main {
     }
 
 }
-
