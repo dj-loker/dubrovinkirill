@@ -38,7 +38,13 @@ public class Main {
             if (k) {
                 //КОНВЕРТИРУЕМ РИМСКИЕ ЧИСЛА В АРАБСКИЕ
                 int  a = romanToArab(words[0]);
+                if ((a < 0) ){
+                    System.out.println("Первое число имеет некорректное значение");
+                }
                 int  b = romanToArab(words[1]);
+                if ((b< 0) ){
+                    System.out.println("Второе число имеет некорректное значение");
+                }
                 char operation = num.charAt(words[0].length());
                 int sum = 0;
                 switch (operation){
@@ -86,6 +92,7 @@ public class Main {
             //ex.printStackTrace();
             System.out.println("Введено некорректное значение");
         }
+
     }
         //КЛАСС ДЛЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
     private static int romanToArab(String roman) {
@@ -114,5 +121,7 @@ public class Main {
         }
 
     }
+
+
 
 }
