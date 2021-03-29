@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -9,9 +8,7 @@ public class Main {
     private int a;
     private int b;
 
-
     public static void main(String[] args) {
-
 
         //ВВОД ВЫРАЖЕНИЯ
         Scanner in = new Scanner(System.in);
@@ -21,7 +18,6 @@ public class Main {
         //МАССИВ АРАБСКИХ И РИМСКИХ ЧИСЕЛ
         String[] roman = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
         int[] arab = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
 
         //РАЗДЕЛЕНИЕ СТРОКИ НА ПОДСТРОКИ И РАБОТА С ЧИСЛАМИ
 
@@ -42,33 +38,20 @@ public class Main {
                 //ПРОВЕРКА КОРРЕКТНОСТИ ВВОДИМЫХ СИМВОЛОВ ИСХОДЯ ИЗ УСЛОВИЯ ЗАДАЧИ
                 if ((a < 0) || (b< 0) ){
                     System.out.println("Введено некорректное значение");
-                } else {
+                } else
+                    {
                     //ВЫПОЛНЯЕМ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ
                     char operation = num.charAt(words[0].length());
-                    int sum = 0;
-                    switch (operation) {
-                        case '+':
-                            sum = a + b;
-                            break;
-                        case '-':
-                            sum = a - b;
-                            break;
-                        case '*':
-                            sum = a * b;
-                            break;
-                        case '/':
-                            sum = a / b;
-                            break;
-                    }
+                        int iu= oper(operation, a,b);
                     //ПРОВЕРЯЕМ КОРРЕКТНОСТЬ ПОЛУЧЕННОГО РЕЗУЛЬТАТА
-                    if ((sum > 10 || sum< 0) ){
+                    if ((iu> 10 || iu< 0) ){
                         System.out.println("Результат имеет недопустимое значение");
                     }
                     //КОНВЕРТИРУЕМ РЕЗУЛЬТАТ ОБРАТНО В РИМСКИЕ
                     else{
                         int i;
                         for (i = 0; i < 10; i++) {
-                            if (arab[i] == sum) {
+                            if (arab[i] == iu) {
                                 System.out.println("Результат:" + roman[i]);
 
                             }
@@ -85,23 +68,32 @@ public class Main {
                 char operation = num.charAt(words[0].length());
                 int b = Integer.parseInt(words[1]);
                 //ВЫПОЛНЯЕМ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ
-                int sum = 0;
-                switch (operation){
-                    case '+': sum = a + b; break;
-                    case '-': sum = a - b; break;
-                    case '*': sum = a * b; break;
-                    case '/': sum = a / b; break;
-                }
-                System.out.println("Результат:"+sum);
 
-            }
+
+             int iu= oper(operation, a,b);
+
+                System.out.println("Результат:"+iu);
+}
         }
         //ОБРАБОТКА ИСКЛЮЧЕНИЙ
         catch(Exception ex){
             //ex.printStackTrace();
             System.out.println("Введено некорректное значение");
         }
+}
 
+    private static int oper (char operation, int a, int b) {
+        int sum;
+        switch (operation){
+            case '+': sum = a + b; break;
+            case '-': sum = a - b; break;
+            case '*': sum = a * b; break;
+            case '/': sum = a / b; break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + operation);
+        }
+
+        return sum;
     }
         //КЛАСС ДЛЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
     private static int romanToArab(String roman) {
@@ -130,7 +122,5 @@ public class Main {
         }
 
     }
-
-
 
 }
